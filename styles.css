@@ -1,4 +1,4 @@
-/* Reset for consistent rendering */
+/* Reset styles to ensure consistent rendering across browsers */
 *,
 *::after,
 *::before {
@@ -7,128 +7,142 @@
   padding: 0;
 }
 
+/* Base body styles for consistent typography and background */
 body {
-    background-color: #f3f4f6;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 0;
+    background-color: #f3f4f6; /* Light gray background */
+    font-family: Arial, sans-serif; /* Default font */
+    line-height: 1.6; /* Improved readability */
+    -webkit-font-smoothing: antialiased; /* Smooth fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox macOS */
+    margin: 0; /* Remove default margin */
 }
 
+/* Define CSS custom properties (variables) for hamburger menu */
 :root {
-  --bar-width: 60px;
-  --bar-height: 8px;
-  --hamburger-gap: 6px;
-  --foreground: #333;
-  --background: white;
-  --hamburger-margin: 8px;
-  --animation-timing: 200ms ease-in-out;
-  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  --bar-width: 60px; /* Width of hamburger menu bars */
+  --bar-height: 8px; /* Height of hamburger menu bars */
+  --hamburger-gap: 6px; /* Gap between hamburger menu bars */
+  --foreground: #333; /* Default color for hamburger bars */
+  --background: white; /* Background color for sidebar */
+  --hamburger-margin: 8px; /* Margin around hamburger menu */
+  --animation-timing: 200ms ease-in-out; /* Animation duration and easing */
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2); /* Total height of hamburger menu */
 }
 
+/* Styles for hamburger menu container */
 .hamburger-menu {
-  --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
+  --x-width: calc(var(--hamburger-height) * 1.41421356237); /* Width for X shape when menu is active */
   display: flex;
   flex-direction: column;
-  gap: var(--hamburger-gap);
+  gap: var(--hamburger-gap); /* Space between bars */
   width: max-content;
   position: absolute;
   top: var(--hamburger-margin);
   left: var(--hamburger-margin);
-  z-index: 2;
+  z-index: 2; /* Ensure menu is above other elements */
   cursor: pointer;
 }
 
+/* Update colors when hamburger menu is checked */
 .hamburger-menu:has(input:checked) {
-  --foreground: white;
-  --background: #333;
+  --foreground: white; /* White bars when menu is open */
+  --background: #333; /* Dark background for sidebar */
 }
 
+/* Add focus styles for accessibility */
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
-  border: 1px solid var(--background);
-  box-shadow: 0 0 0 1px var(--foreground);
+  border: 1px solid var(--background); /* Border for focus state */
+  box-shadow: 0 0 0 1px var(--foreground); /* Focus ring */
 }
 
+/* Styles for hamburger menu bars and input */
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu input {
   content: "";
   width: var(--bar-width);
   height: var(--bar-height);
-  background-color: var(--foreground);
-  border-radius: 9999px;
+  background-color: var(--foreground); /* Bar color */
+  border-radius: 9999px; /* Rounded edges */
   transform-origin: left center;
   transition: opacity var(--animation-timing), width var(--animation-timing),
     rotate var(--animation-timing), translate var(--animation-timing),
-    background-color var(--animation-timing);
+    background-color var(--animation-timing); /* Smooth transitions */
 }
 
+/* Remove default input styles for hamburger menu */
 .hamburger-menu input {
   appearance: none;
   padding: 0;
   margin: 0;
   outline: none;
-  pointer-events: none;
+  pointer-events: none; /* Prevent direct interaction with input */
 }
 
+/* Transform top bar to form X when menu is checked */
 .hamburger-menu:has(input:checked)::before {
   rotate: 45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / -2);
 }
 
+/* Transform bottom bar to form X when menu is checked */
 .hamburger-menu:has(input:checked)::after {
   rotate: -45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / 2);
 }
 
+/* Hide middle bar when menu is checked */
 .hamburger-menu input:checked {
   opacity: 0;
   width: 0;
 }
 
+/* Sidebar styles, hidden by default */
 .sidebar {
-  transition: translate var(--animation-timing);
-  translate: -100%;
+  transition: translate var(--animation-timing); /* Smooth slide-in */
+  translate: -100%; /* Off-screen by default */
   padding: 0.5rem 1rem;
-  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-  background-color: var(--foreground);
-  color: var(--background);
+  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem); /* Space for hamburger menu */
+  background-color: var(--foreground); /* Sidebar background */
+  color: var(--background); /* Text color */
   max-width: 10rem;
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height */
 }
 
+/* Show sidebar when hamburger menu is checked */
 .hamburger-menu:has(input:checked) + .sidebar {
-  translate: 0;
+  translate: 0; /* Slide sidebar into view */
 }
 
-/* Header and Footer */
+/* Styles for header and footer */
 header, footer {
-    background-color: #0B1727;
-    color: #FFFFFF;
-    font-family: 'Montserrat Alternates', sans-serif;
+    background-color: #0B1727; /* Dark blue background */
+    color: #FFFFFF; /* White text */
+    font-family: 'Montserrat Alternates', sans-serif; /* Custom font */
     padding: 2vw;
     width: 100%;
 }
 
+/* Container styles for header and footer */
 header .container, footer .container {
-    max-width: 90%;
+    max-width: 90%; /* Constrain content width */
     margin: 0 auto;
     display: flex;
     align-items: center;
 }
 
+/* Header container with space-between layout */
 header .container {
     justify-content: space-between;
     flex-wrap: wrap;
     position: relative;
 }
 
+/* Logo styles in header */
 header .logo {
     max-width: 15vw;
     height: auto;
@@ -136,11 +150,12 @@ header .logo {
     height: 100px;
 }
 
-/* Hamburger Menu */
+/* Hide navigation toggle input */
 .nav-toggle {
     display: none;
 }
 
+/* Hamburger menu label for mobile */
 .nav-toggle-label {
     display: none;
     font-size: 2rem;
@@ -150,6 +165,7 @@ header .logo {
     line-height: 1;
 }
 
+/* Navigation menu styles */
 .nav-menu {
     display: flex;
     justify-content: center;
@@ -157,6 +173,7 @@ header .logo {
     flex-wrap: wrap;
 }
 
+/* Navigation link styles */
 .nav-menu a {
     color: #FFFFFF;
     text-decoration: none;
@@ -168,6 +185,7 @@ header .logo {
     transition: color 0.3s ease;
 }
 
+/* Hover effect for navigation links */
 .nav-menu a:hover::after {
     content: '';
     position: absolute;
@@ -175,36 +193,40 @@ header .logo {
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: #00FFFF;
+    background-color: #00FFFF; /* Cyan underline */
 }
 
+/* Footer container with centered content */
 footer .container {
     flex-direction: column;
     text-align: center;
     padding: 1rem 0;
 }
 
+/* Footer heading styles */
 footer h3 {
     font-weight: 700;
     margin-bottom: 0.5rem;
     font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
+/* Footer paragraph styles */
 footer p {
     font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
-/* Loan Tool */
+/* Loan tool container styles */
 #loan-tool {
     max-width: 90%;
     width: 32rem;
     margin: 2rem auto;
     padding: 1.5rem;
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background */
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
 }
 
+/* Toggle buttons for switching between Pre-Qualification and Loan Calculator */
 .tool-toggle {
     display: flex;
     gap: 0.5rem;
@@ -212,6 +234,7 @@ footer p {
     flex-wrap: wrap;
 }
 
+/* Default styles for toggle buttons */
 .tool-toggle button {
     flex: 1;
     padding: 0.5rem 1rem;
@@ -220,39 +243,45 @@ footer p {
     font-size: clamp(0.9rem, 2vw, 1rem);
     min-width: 120px;
     touch-action: manipulation;
-    background-color: #2563eb; /* Default blue for both buttons */
-    color: #ffffff;
+    background-color: #2563eb; /* Blue background for both buttons */
+    color: #ffffff; /* White text */
 }
 
+/* Styles for active toggle button (indicates selected functionality) */
 .tool-toggle button.active {
-    background-color: #14b8a6; /* Teal for active button */
-    color: #ffffff;
+    background-color: #14b8a6; /* Teal background for active button */
+    color: #ffffff; /* White text */
 }
 
+/* Ensure non-active button retains default blue color */
 .tool-toggle button:not(.active) {
-    background-color: #2563eb; /* Ensure non-active button stays blue */
-    color: #ffffff;
+    background-color: #2563eb; /* Blue background for non-active button */
+    color: #ffffff; /* White text */
 }
 
+/* Loan tool form layout */
 .tool-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+/* Form heading styles */
 .tool-form h2 {
     font-size: clamp(1.1rem, 3vw, 1.25rem);
     font-weight: 700;
 }
 
+/* Form label styles */
 .tool-form label {
     font-weight: 600;
     font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
+/* Form input styles */
 .tool-form input {
     padding: 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid #d1d5db; /* Light gray border */
     border-radius: 0.375rem;
     width: 100%;
     box-sizing: border-box;
@@ -261,14 +290,16 @@ footer p {
     -moz-appearance: textfield;
 }
 
+/* Read-only input styles */
 .tool-form input[readonly] {
-    background-color: #f3f4f6;
+    background-color: #f3f4f6; /* Light gray background */
 }
 
+/* Form button styles */
 .tool-form button {
     padding: 0.5rem 1rem;
-    background-color: #2563eb;
-    color: #ffffff;
+    background-color: #2563eb; /* Blue background */
+    color: #ffffff; /* White text */
     border: none;
     border-radius: 0.375rem;
     cursor: pointer;
@@ -277,45 +308,54 @@ footer p {
     touch-action: manipulation;
 }
 
+/* Hover effect for form buttons */
 .tool-form button:hover {
-    background-color: #1e40af;
+    background-color: #1e40af; /* Darker blue on hover */
 }
 
+/* Income source input styles */
 .tool-form .income-source {
     padding: 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid #d1d5db; /* Light gray border */
     border-radius: 0.375rem;
 }
 
+/* Container for multiple income sources */
 .tool-form #income-sources-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+/* Spacing for form divs */
 .tool-form div {
     margin-top: 1rem;
 }
 
+/* Hide elements with this class */
 .hidden {
     display: none;
 }
 
-/* Media Queries for Responsive Design */
+/* Responsive design for screens up to 768px */
 @media (max-width: 768px) {
+    /* Adjust header container for mobile */
     header .container {
         flex-direction: row;
         align-items: center;
     }
 
+    /* Scale logo for smaller screens */
     header .logo {
         max-width: 20vw;
     }
 
+    /* Show hamburger menu label */
     .nav-toggle-label {
         display: block;
     }
 
+    /* Hide navigation menu by default on mobile */
     .nav-menu {
         display: none;
         flex-direction: column;
@@ -328,10 +368,12 @@ footer p {
         z-index: 1000;
     }
 
+    /* Show navigation menu when toggle is checked */
     .nav-toggle:checked ~ .nav-menu {
         display: flex;
     }
 
+    /* Style navigation links for mobile */
     .nav-menu a {
         margin: 0.5rem 0;
         font-size: clamp(1rem, 3vw, 1.2rem);
@@ -340,63 +382,78 @@ footer p {
         text-align: center;
     }
 
+    /* Adjust loan tool width and padding */
     #loan-tool {
         width: 95%;
         margin: 1rem auto;
         padding: 1rem;
     }
 
+    /* Stack toggle buttons vertically */
     .tool-toggle {
         flex-direction: column;
     }
 
+    /* Full-width toggle buttons */
     .tool-toggle button {
         width: 100%;
     }
 
+    /* Reduce footer padding */
     footer .container {
         padding: 0.5rem 0;
     }
 }
 
+/* Responsive design for screens up to 480px */
 @media (max-width: 480px) {
+    /* Further scale logo */
     header .logo {
         max-width: 25vw;
     }
 
+    /* Adjust navigation link font size */
     .nav-menu a {
         font-size: clamp(0.9rem, 4vw, 1.1rem);
     }
 
+    /* Reduce loan tool padding */
     #loan-tool {
         padding: 0.75rem;
     }
 
+    /* Adjust form heading font size */
     .tool-form h2 {
         font-size: clamp(1rem, 4vw, 1.1rem);
     }
 
+    /* Adjust form input and button font size */
     .tool-form input, .tool-form button {
         font-size: clamp(0.8rem, 3vw, 0.9rem);
     }
 }
 
+/* Responsive design for screens 1024px and above */
 @media (min-width: 1024px) {
+    /* Increase container width */
     header .container, footer .container {
         max-width: 80%;
     }
 
+    /* Set max width for loan tool */
     #loan-tool {
         max-width: 32rem;
     }
 }
 
-/* iOS Safari specific */
+/* iOS Safari-specific styles */
 @supports (-webkit-touch-callout: none) {
+    /* Remove default number input appearance */
     input[type="number"] {
         -webkit-appearance: none;
     }
 
+    /* Remove tap highlight for buttons */
     .tool-form button, .nav-toggle-label {
         -webkit-tap-highlight-color: transparent;
     }
