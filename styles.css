@@ -123,22 +123,22 @@ header, footer {
     background-color: #0B1727; /* Dark blue background */
     color: #FFFFFF; /* White text */
     font-family: 'Montserrat Alternates', sans-serif; /* Custom font */
-    padding: 2vw;
+    padding: 2rem 0; /* Adjusted padding */
     width: 100%;
 }
 
-/* Container styles for header and footer */
-header .container, footer .container {
+/* Container styles for header, footer, and terms section */
+header .container, footer .container, .terms-section .container {
     max-width: 90%; /* Constrain content width */
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 /* Header container with space-between layout */
 header .container {
     justify-content: space-between;
-    flex-wrap: wrap;
     position: relative;
 }
 
@@ -196,22 +196,103 @@ header .logo {
     background-color: #00FFFF; /* Cyan underline */
 }
 
-/* Footer container with centered content */
+/* Footer container with column layout */
 footer .container {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem 0;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Footer column styles */
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 1rem;
 }
 
 /* Footer heading styles */
 footer h3 {
     font-weight: 700;
-    margin-bottom: 0.5rem;
     font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 0.5rem;
 }
 
-/* Footer paragraph styles */
-footer p {
+/* Footer paragraph and link styles */
+footer p, footer a {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0.25rem 0;
+}
+
+/* Cyan hover effect for footer links */
+footer a:hover {
+    color: #00FFFF;
+}
+
+/* Social media links container */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Social media icon styles */
+.social-links a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Footer navigation list styles */
+.footer-nav {
+    list-style: none;
+    padding: 0;
+}
+
+/* Footer navigation item styles */
+.footer-nav li {
+    margin: 0.25rem 0;
+}
+
+/* Newsletter form styles */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Newsletter input styles */
+.newsletter-form input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    width: 100%;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    background-color: #ffffff;
+}
+
+/* Newsletter button styles */
+.newsletter-form button {
+    padding: 0.5rem 1rem;
+    background-color: #00FFFF; /* Cyan */
+    color: #0B1727;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    min-height: 44px;
+}
+
+/* Horizontal rule styles */
+.footer-hr {
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+/* Copyright notice styles */
+.copyright {
+    text-align: center;
     font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
@@ -337,30 +418,14 @@ footer p {
     display: none;
 }
 
-/* Styles for Terms and Conditions section in footer */
+/* Styles for Terms and Conditions section */
+.terms-section {
+    background-color: #f3f4f6; /* Match body background */
+    padding: 2rem 0;
+}
+
 .terms-conditions {
-    margin-top: 1rem; /* Space above section */
-    width: 100%; /* Full width */
-    text-align: left; /* Align text left for readability */
-}
-
-/* Styles for Terms and Conditions toggle button */
-.terms-toggle {
-    padding: 0.5rem 1rem;
-    background-color: #2563eb; /* Blue background to match other buttons */
-    color: #ffffff; /* White text */
-    border: none;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    min-height: 44px; /* Accessible tap target */
-    touch-action: manipulation;
-    display: inline-block; /* Inline-block for centering */
-}
-
-/* Hover effect for Terms and Conditions toggle button */
-.terms-toggle:hover {
-    background-color: #1e40af; /* Darker blue on hover */
+    width: 100%;
 }
 
 /* Styles for Terms and Conditions content */
@@ -368,11 +433,17 @@ footer p {
     background-color: #ffffff; /* White background for contrast */
     padding: 1rem;
     border-radius: 0.375rem;
-    margin-top: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     max-height: 200px; /* Limit height for scrollable content */
     overflow-y: auto; /* Enable vertical scrolling */
     font-size: clamp(0.8rem, 2vw, 0.9rem); /* Responsive font size */
+}
+
+/* Terms and Conditions heading */
+.terms-content h4 {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
 /* Responsive design for screens up to 768px */
@@ -437,9 +508,16 @@ footer p {
         width: 100%;
     }
 
-    /* Reduce footer padding */
+    /* Stack footer columns vertically */
     footer .container {
-        padding: 0.5rem 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Center social links */
+    .social-links {
+        justify-content: center;
     }
 
     /* Adjust Terms and Conditions content for smaller screens */
@@ -485,7 +563,7 @@ footer p {
 /* Responsive design for screens 1024px and above */
 @media (min-width: 1024px) {
     /* Increase container width */
-    header .container, footer .container {
+    header .container, footer .container, .terms-section .container {
         max-width: 80%;
     }
 
@@ -503,7 +581,7 @@ footer p {
     }
 
     /* Remove tap highlight for buttons */
-    .tool-form button, .nav-toggle-label, .terms-toggle {
+    .tool-form button, .nav-toggle-label {
         -webkit-tap-highlight-color: transparent;
     }
 }
