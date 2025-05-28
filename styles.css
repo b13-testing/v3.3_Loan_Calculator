@@ -243,20 +243,20 @@ footer p {
     font-size: clamp(0.9rem, 2vw, 1rem);
     min-width: 120px;
     touch-action: manipulation;
-    background-color: #2563eb; /* Blue background for both buttons */
-    color: #ffffff; /* White text */
+    background-color: #2563eb; /* Blue background for both buttons by default */
+    color: #ffffff; /* White text for contrast */
 }
 
 /* Styles for active toggle button (indicates selected functionality) */
 .tool-toggle button.active {
-    background-color: #14b8a6; /* Teal background for active button */
-    color: #ffffff; /* White text */
+    background-color: #e5e7eb; /* Light gray background for active button */
+    color: #1f2937; /* Dark text for readability */
 }
 
 /* Ensure non-active button retains default blue color */
 .tool-toggle button:not(.active) {
     background-color: #2563eb; /* Blue background for non-active button */
-    color: #ffffff; /* White text */
+    color: #ffffff; /* White text for contrast */
 }
 
 /* Loan tool form layout */
