@@ -29,7 +29,7 @@
     </header>
     <div id="loan-tool">
         <div class="tool-toggle">
-            <button id="prequal-btn" class="active">Pre-Qualification Tool</button>
+            <button id="prequal-btn" class="active">Pre-Qualification Calculator</button>
             <button id="calculator-btn">Loan Calculator</button>
         </div>
         <div id="prequal-form" class="tool-form">
@@ -55,18 +55,9 @@
             <button onclick="calculatePrequal()">Assess Eligibility</button>
             <div id="prequal-result"></div>
         </div>
-        <div id="calculator-form" class="tool-form hidden">
-            <h2>Loan Calculator</h2>
-            <label>Loan Amount ($):</label>
-            <input type="number" id="loan-amount" min="0" step="0.01" required>
-            <label>Annual Interest Rate (%):</label>
-            <input type="number" id="interest-rate" min="0" step="0.01" required>
-            <label>Loan Term (Years):</label>
-            <input type="number" id="loan-term" min="1" step="1" required>
-            <button onclick="calculateLoan()">Calculate Payment</button>
-            <div id="calculator-result"></div>
-        </div>
     </div>
+
+    
     <footer>
         <div class="container">
             <h3>Contact Us</h3>
@@ -74,9 +65,10 @@
             <p>Phone: (123) 456-7890</p>
             <p>Address: 123 Business St, City, Country</p>
             <div class="terms-conditions">
-                <button class="terms-toggle" onclick="toggleTerms()">View Terms and Conditions</button>
-                <div id="terms-content" class="terms-content hidden">
-                    <h4>Terms and Conditions</h4>
+                <div id="terms-content" class="terms-content">
+                    <h4>Terms and Conditions </h4>
+                    <p>(This is a testing version and a Placeholder for the official terms and conditions to be uploaded.)</p>
+                    <p></p>
                     <p>
                         Welcome to our Loan Tool. By using this tool, you agree to the following terms and conditions:
                         <br><br>
@@ -84,7 +76,7 @@
                         <br>
                         2. <strong>User Responsibility</strong>: You are responsible for ensuring the accuracy of the data entered. Inaccurate inputs may lead to incorrect results.
                         <br>
-                        3. <strong>Limitation of Liability</strong>: Advance Commercial Co. is not liable for any decisions made based on the results of this tool.
+                        3. <strong>Limitation of Liability</strong>: Advance Commercial Equipment Ltd. is not liable for any decisions made based on the results of this tool.
                         <br>
                         4. <strong>Privacy</strong>: We do not store or share any personal information entered into this tool unless explicitly stated.
                         <br>
@@ -248,19 +240,6 @@
             // Calculate monthly payment using the amortization formula
             const monthlyPayment = (amount * rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
             resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2); // Display with 2 decimal places
-        }
-
-        // Toggle visibility of Terms and Conditions content
-        function toggleTerms() {
-            const termsContent = document.getElementById('terms-content');
-            const termsToggle = document.querySelector('.terms-toggle');
-            if (termsContent.classList.contains('hidden')) {
-                termsContent.classList.remove('hidden');
-                termsToggle.textContent = 'Hide Terms and Conditions';
-            } else {
-                termsContent.classList.add('hidden');
-                termsToggle.textContent = 'View Terms and Conditions';
-            }
         }
     </script>
 </body>
