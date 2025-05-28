@@ -76,6 +76,7 @@
         </div>
     </footer>
     <script>
+        // Initialize event listeners when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             const prequalBtn = document.getElementById('prequal-btn');
             const calculatorBtn = document.getElementById('calculator-btn');
@@ -87,72 +88,80 @@
             const navToggle = document.getElementById('nav-toggle');
             const navLinks = document.querySelectorAll('.nav-menu a');
 
+            // Handle click on Pre-Qualification button to show its form
             prequalBtn.addEventListener('click', () => {
-                prequalBtn.classList.add('bg-blue-600', 'text-white');
-                prequalBtn.classList.remove('bg-gray-200', 'text-gray-800');
-                calculatorBtn.classList.add('bg-gray-200', 'text-gray-800');
-                calculatorBtn.classList.remove('bg-blue-600', 'text-white');
+                prequalBtn.classList.add('active');
+                calculatorBtn.classList.remove('active');
                 prequalForm.classList.remove('hidden');
                 calculatorForm.classList.add('hidden');
             });
 
+            // Handle click on Loan Calculator button to show its form
             calculatorBtn.addEventListener('click', () => {
-                calculatorBtn.classList.add('bg-blue-600', 'text-white');
-                calculatorBtn.classList.remove('bg-gray-200', 'text-gray-800');
-                prequalBtn.classList.add('bg-gray-200', 'text-gray-800');
-                prequalBtn.classList.remove('bg-blue-600', 'text-white');
+                calculatorBtn.classList.add('active');
+                prequalBtn.classList.remove('active');
                 calculatorForm.classList.remove('hidden');
                 prequalForm.classList.add('hidden');
             });
 
+            // Update income input fields when the number of sources changes
             incomeSourcesInput.addEventListener('input', updateIncomeFields);
 
-            function updateIncomeFields() {
-                const numSources = parseInt(incomeSourcesInput.value) || 1;
-                incomeSourcesContainer.innerHTML = '';
-
-                for (let i = 1; i <= numSources; i++) {
-                    const label = document.createElement('label');
-                    label.textContent = `Monthly Income for Source ${i} ($):`;
-                    label.className = 'font-semibold';
-                    const input = document.createElement('input');
-                    input.type = 'number';
-                    input.className = 'income-source';
-                    input.min = '0';
-                    input.step = '0.01';
-                    input.required = true;
-                    input.style.width = '100%';
-                    incomeSourcesContainer.appendChild(label);
-                    incomeSourcesContainer.appendChild(input);
-                }
-
-                const incomeInputs = document.querySelectorAll('.income-source');
-                incomeInputs.forEach(input => {
-                    input.addEventListener('input', updateTotalIncome);
-                });
-
-                updateTotalIncome();
-            }
-
-            function updateTotalIncome() {
-                const incomeInputs = document.querySelectorAll('.income-source');
-                let total = 0;
-                incomeInputs.forEach(input => {
-                    total += parseFloat(input.value) || 0;
-                });
-                totalIncome.value = total.toFixed(2);
-            }
-
-            // Collapse menu on link click
+            // Close navigation menu when any nav link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     navToggle.checked = false;
                 });
             });
 
+            // Initialize income fields on page load
             updateIncomeFields();
         });
 
+        // Dynamically generate input fields for income sources based on user input
+        function updateIncomeFields() {
+            const numSources = parseInt(document.getElementById('income-sources').value) || 1;
+            const incomeSourcesContainer = document.getElementById('income-sources-container');
+            incomeSourcesContainer.innerHTML = ''; // Clear existing fields
+
+            // Create input fields for each income source
+            for (let i = 1; i <= numSources; i++) {
+                const label = document.createElement('label');
+                label.textContent = `Monthly Income for Source ${i} ($):`;
+                label.className = 'font-semibold';
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'income-source';
+                input.min = '0';
+                input.step = '0.01';
+                input.required = true;
+                input.style.width = '100%';
+                incomeSourcesContainer.appendChild(label);
+                incomeSourcesContainer.appendChild(input);
+            }
+
+            // Add event listeners to update total income when inputs change
+            const incomeInputs = document.querySelectorAll('.income-source');
+            incomeInputs.forEach(input => {
+                input.addEventListener('input', updateTotalIncome);
+            });
+
+            // Update total income immediately after creating fields
+            updateTotalIncome();
+        }
+
+        // Calculate and display the total monthly income from all sources
+        function updateTotalIncome() {
+            const incomeInputs = document.querySelectorAll('.income-source');
+            const totalIncome = document.getElementById('total-income');
+            let total = 0;
+            incomeInputs.forEach(input => {
+                total += parseFloat(input.value) || 0; // Sum valid inputs, treat invalid as 0
+            });
+            totalIncome.value = total.toFixed(2); // Display total with 2 decimal places
+        }
+
+        // Assess loan eligibility based on financial inputs
         function calculatePrequal() {
             const incomeSources = parseInt(document.getElementById('income-sources').value);
             const totalIncome = parseFloat(document.getElementById('total-income').value);
@@ -164,11 +173,13 @@
             const resultDiv = document.getElementById('prequal-result');
             const incomeInputs = document.querySelectorAll('.income-source');
 
+            // Validate all inputs
             let valid = true;
             incomeInputs.forEach(input => {
                 if (isNaN(parseFloat(input.value))) valid = false;
             });
 
+            // Check for invalid or missing inputs
             if (!valid || isNaN(incomeSources) || isNaN(totalIncome) || 
                 isNaN(expenses) || isNaN(debts) || isNaN(loanAmount) || 
                 isNaN(creditLimit) || isNaN(dependents)) {
@@ -176,15 +187,18 @@
                 return;
             }
 
+            // Calculate Debt-to-Income (DTI) ratio
             const dti = ((debts + expenses) / totalIncome) * 100;
             let status = '';
             let riskScore = 0;
 
+            // Adjust risk score based on dependents, income sources, credit limit, and loan amount
             riskScore += dependents * 5;
             riskScore -= incomeSources * 5;
             if (creditLimit >= 10000) riskScore -= 10;
             if (loanAmount > totalIncome * 12) riskScore += 10;
 
+            // Determine eligibility based on DTI and risk score
             if (dti <= 36 && riskScore <= 10) {
                 status = 'Good - You are likely to qualify for a loan (DTI: ' + dti.toFixed(2) + '%).';
             } else if (dti <= 43 && riskScore <= 20) {
@@ -193,22 +207,26 @@
                 status = 'High - Loan qualification may be difficult (DTI: ' + dti.toFixed(2) + '%).';
             }
 
+            // Display result with DTI and risk score
             resultDiv.innerHTML = 'Debt-to-Income Ratio: ' + status + ' (Risk Score: ' + riskScore + ')';
         }
 
+        // Calculate monthly loan payment based on loan amount, interest rate, and term
         function calculateLoan() {
             const amount = parseFloat(document.getElementById('loan-amount').value);
-            const rate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12;
-            const term = parseFloat(document.getElementById('loan-term').value) * 12;
+            const rate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12; // Monthly rate
+            const term = parseFloat(document.getElementById('loan-term').value) * 12; // Total months
             const resultDiv = document.getElementById('calculator-result');
 
+            // Validate inputs
             if (isNaN(amount) || isNaN(rate) || isNaN(term)) {
                 resultDiv.innerHTML = 'Please enter valid numbers for all fields.';
                 return;
             }
 
+            // Calculate monthly payment using the amortization formula
             const monthlyPayment = (amount * rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
-            resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+            resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2); // Display with 2 decimal places
         }
     </script>
 </body>
