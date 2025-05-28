@@ -220,16 +220,18 @@ footer p {
     font-size: clamp(0.9rem, 2vw, 1rem);
     min-width: 120px;
     touch-action: manipulation;
+    background-color: #2563eb; /* Default blue for both buttons */
+    color: #ffffff;
 }
 
 .tool-toggle button.active {
-    background-color: #2563eb;
+    background-color: #14b8a6; /* Teal for active button */
     color: #ffffff;
 }
 
 .tool-toggle button:not(.active) {
-    background-color: #e5e7eb;
-    color: #1f2937;
+    background-color: #2563eb; /* Ensure non-active button stays blue */
+    color: #ffffff;
 }
 
 .tool-form {
@@ -399,5 +401,3 @@ footer p {
         -webkit-tap-highlight-color: transparent;
     }
 }
-
-
