@@ -16,7 +16,6 @@
                 <span>☰</span>
             </label>
             <nav class="nav-menu" role="navigation">
-                <!-- Updated links -->
                 <a href="https://advancecommercial.co/">Home</a>
                 <a href="https://advancecommercial.co/about-us/">About Us</a>
                 <a href="https://advancecommercial.co/services/">Services</a>
@@ -32,19 +31,6 @@
             <button id="prequal-btn" class="active">Pre-Qualification Calculator</button>
             <button id="calculator-btn">Loan Calculator</button>
         </div>
-
-        <div id="calculator-form" class="tool-form hidden">
-            <h2>Loan Calculator</h2>
-            <label>Loan Amount ($):</label>
-            <input type="number" id="loan-amount" min="0" step="0.01" required>
-            <label>Annual Interest Rate (%):</label>
-            <input type="number" id="interest-rate" min="0" step="0.01" required>
-            <label>Loan Term (Years):</label>
-            <input type="number" id="loan-term" min="1" step="1" required>
-            <button onclick="calculateLoan()">Calculate Payment</button>
-            <div id="calculator-result"></div>
-        </div>
-        
         <div id="prequal-form" class="tool-form">
             <h2>Pre-Qualification Assessment</h2>
             <label>Number of Income Sources:</label>
@@ -68,64 +54,23 @@
             <button onclick="calculatePrequal()">Assess Eligibility</button>
             <div id="prequal-result"></div>
         </div>
+        <div id="calculator-form" class="tool-form hidden">
+            <h2>Loan Calculator</h2>
+            <label>Loan Amount ($):</label>
+            <input type="number" id="loan-amount" min="0" step="0.01" required>
+            <label>Annual Interest Rate (%):</label>
+            <input type="number" id="interest-rate" min="0" step="0.01" required>
+            <label>Loan Term (Years):</label>
+            <input type="number" id="loan-term" min="1" step="1" required>
+            <button onclick="calculateLoan()">Calculate Payment</button>
+            <div id="calculator-result"></div>
+        </div>
     </div>
-
-    <footer style="background-color: #0B1727; color: #FFFFFF; font-family: 'Montserrat Alternates', sans-serif; padding: 2rem 0; width: 100%;">
-        <div class="container" style="max-width: 90%; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; text-align: left;">
-            <!-- Contact Information -->
-            <div style="flex: 1; min-width: 200px; margin-bottom: 1rem;">
-                <h3 style="font-weight: 700; font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5rem;">Advance Commercial Equipment Ltd.</h3>
-                <p style="font-size: clamp(0.8rem, 2vw, 1rem); margin: 0.25rem 0;">
-                    1-5 Chootoo Road, El Socorro Extension,<br>
-                    San Juan, Trinidad & Tobago
-                </p>
-                <p style="font-size: clamp(0.8rem, 2vw, 1rem); margin: 0.25rem 0;">
-                    Phone: (868) 638-8992 / (868) 674-7170
-                </p>
-                <p style="font-size: clamp(0.8rem, 2vw, 1rem); margin: 0.25rem 0;">
-                    Email: <a href="mailto:info@advancecommercial.co" style="color: #00FFFF; text-decoration: none;">info@advancecommercial.co</a>
-                </p>
-                <!-- Social Media Links -->
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <a href="https://www.facebook.com/advancecommercialtt/" style="color: #FFFFFF; font-size: 1.5rem; transition: color 0.3s ease;">
-                        <span style="font-family: Arial, sans-serif;">&#xf09a;</span> <!-- Facebook icon -->
-                    </a>
-                    <a href="https://www.instagram.com/advancecommercialtt/" style="color: #FFFFFF; font-size: 1.5rem; transition: color 0.3s ease;">
-                        <span style="font-family: Arial, sans-serif;">&#xf16d;</span> <!-- Instagram icon -->
-                    </a>
-                    <a href="https://www.linkedin.com/company/advance-commercial-equipment-ltd/" style="color: #FFFFFF; font-size: 1.5rem; transition: color 0.3s ease;">
-                        <span style="font-family: Arial, sans-serif;">&#xf0e1;</span> <!-- LinkedIn icon -->
-                    </a>
-                    <a href="https://twitter.com/AdvanceCommTT" style="color: #FFFFFF; font-size: 1.5rem; transition: color 0.3s ease;">
-                        <span style="font-family: Arial, sans-serif;">&#xf099;</span> <!-- Twitter icon -->
-                    </a>
-                </div>
-            </div>
-            <!-- Navigation Links -->
-            <div style="flex: 1; min-width: 200px; margin-bottom: 1rem;">
-                <h3 style="font-weight: 700; font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5rem;">Quick Links</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin: 0.25rem 0;"><a href="https://advancecommercial.co/" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Home</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="https://advancecommercial.co/about-us/" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">About Us</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="https://advancecommercial.co/services/" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Services</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="https://theforgekitchens.com/" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Kitchen Studio</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="store.html" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Store</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="https://advancecommercial.co/contact-us/" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Contact Us</a></li>
-                    <li style="margin: 0.25rem 0;"><a href="index.html" style="color: #FFFFFF; text-decoration: none; font-size: clamp(0.8rem, 2vw, 1rem);">Calculator</a></li>
-                </ul>
-            </div>
-            <!-- Newsletter Signup -->
-            <div style="flex: 1; min-width: 200px; margin-bottom: 1rem;">
-                <h3 style="font-weight: 700; font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 0.5rem;">Newsletter Signup</h3>
-                <form style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <input type="email" placeholder="Enter your email" style="padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; width: 100%; font-size: clamp(0.8rem, 2vw, 1rem); background-color: #ffffff;" required>
-                    <button type="submit" style="padding: 0.5rem 1rem; background-color: #00FFFF; color: #0B1727; border: none; border-radius: 0.375rem; cursor: pointer; font-size: clamp(0.8rem, 2vw, 1rem); min-height: 44px;">Join Now</button>
-                </form>
-            </div>
-            <!-- Terms and Conditions -->
-            <div class="terms-conditions" style="width: 100%; margin-top: 1rem;">
+    <section class="terms-section">
+        <div class="container">
+            <div class="terms-conditions">
                 <div id="terms-content" class="terms-content">
-                    <h4 style="font-size: clamp(1rem, 2.5vw, 1.1rem); font-weight: 700; margin-bottom: 0.5rem;">Terms and Conditions</h4>
+                    <h4>Terms and Conditions</h4>
                     <p>
                         Welcome to our Loan Tool. By using this tool, you agree to the following terms and conditions:
                         <br><br>
@@ -144,12 +89,50 @@
                 </div>
             </div>
         </div>
-        <!-- Horizontal Rule and Copyright -->
-        <hr style="border: 0; border-top: 1px solid #FFFFFF; margin: 1rem 0; width: 100%;">
-        <div class="container" style="max-width: 90%; margin: 0 auto; text-align: center;">
-            <p style="font-size: clamp(0.8rem, 2vw, 1rem); margin: 0;">
-                &copy; 2025 Advance Commercial Equipment Ltd. All Rights Reserved.
-            </p>
+    </section>
+    <footer>
+        <div class="container">
+            <!-- Contact Information -->
+            <div class="footer-column">
+                <h3>Advance Commercial Equipment Ltd.</h3>
+                <p>
+                    1-5 Chootoo Road, El Socorro Extension,<br>
+                    San Juan, Trinidad & Tobago
+                </p>
+                <p>Phone: (868) 638-8992 / (868) 674-7170</p>
+                <p>Email: <a href="mailto:info@advancecommercial.co">info@advancecommercial.co</a></p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/advancecommercialtt/"></a>
+                    <a href="https://www.instagram.com/advancecommercialtt/"></a>
+                    <a href="https://www.linkedin.com/company/advance-commercial-equipment-ltd/"></a>
+                    <a href="https://twitter.com/AdvanceCommTT"></a>
+                </div>
+            </div>
+            <!-- Navigation Links -->
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-nav">
+                    <li><a href="https://advancecommercial.co/">Home</a></li>
+                    <li><a href="https://advancecommercial.co/about-us/">About Us</a></li>
+                    <li><a href="https://advancecommercial.co/services/">Services</a></li>
+                    <li><a href="https://theforgekitchens.com/">Kitchen Studio</a></li>
+                    <li><a href="store.html">Store</a></li>
+                    <li><a href="https://advancecommercial.co/contact-us/">Contact Us</a></li>
+                    <li><a href="index.html">Calculator</a></li>
+                </ul>
+            </div>
+            <!-- Newsletter Signup -->
+            <div class="footer-column">
+                <h3>Newsletter Signup</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Join Now</button>
+                </form>
+            </div>
+        </div>
+        <hr class="footer-hr">
+        <div class="container">
+            <p class="copyright">© 2025 Advance Commercial Equipment Ltd. All Rights Reserved.</p>
         </div>
     </footer>
     <script>
